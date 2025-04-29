@@ -14,13 +14,13 @@ app.use('/user', userRoutes);
 app.use('/journeyPlan', journeyPlanRoutes);
 app.use('/travelLog', travelLogRoutes);
 
-// Synchronize the Model into SQL
-sequelize.sync()
-  .then(() => {
-    console.log('Database connected');
-    app.listen(5000, () => console.log('Server started on port 5000'));
-  })
-  .catch(error => console.error(error));
+// // Synchronize the Model into SQL
+// sequelize.sync()
+//   .then(() => {
+//     console.log('Database connected');
+//     app.listen(5000, () => console.log('Server started on port 5000'));
+//   })
+//   .catch(error => console.error(error));
 
 // Test the Vercel
 app.get("/", (request, response) => {
