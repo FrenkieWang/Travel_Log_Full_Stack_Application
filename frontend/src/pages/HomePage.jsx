@@ -11,6 +11,7 @@ const HomePage = () => {
   const [user, setUser] = useState(null);
   const [userPlanNames, setUserPlanNames] = useState([]);
   const [userTravelLogTitles, setUserTravelLogTitles] = useState([]);
+  const [newAddress, setNewAddress] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -59,6 +60,25 @@ const HomePage = () => {
     navigate('/');
   };
 
+  const handleAddressUpdate = () => {
+    const token = localStorage.getItem('token');
+    if (!newAddress.trim()) {
+      alert('Please enter a new address.');
+      return;
+    }
+
+    axios.post(`${HOST_URL}/user/updateAddress`, { newAddress }, { headers: { Authorization: token } })
+      .then(response => {
+        alert(response.data);
+        setUser(prevUser => ({ ...prevUser, address: newAddress }));
+        setNewAddress('');
+      })
+      .catch(error => {
+        console.error(error);
+        alert(error.response?.data || 'Error updating address');
+      });
+  };
+
   if (!user) return <div>User does not exist</div>;
 
   const { username, email, address } = user;
@@ -68,6 +88,15 @@ const HomePage = () => {
       <h1>Welcome, {username}!</h1>
       <p><strong>Email:</strong> {email}</p>
       <p><strong>Address:</strong> {address}</p>
+
+      <label>Update your address:</label>
+      <input
+        type="text"
+        placeholder="Enter new address"
+        value={newAddress}
+        onChange={event => setNewAddress(event.target.value)}
+      />
+      <button onClick={handleAddressUpdate}>Update Address</button>
 
       <h3>Your Travel Logs:</h3>
       <ul>

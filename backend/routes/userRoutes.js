@@ -6,6 +6,7 @@ const verifyToken = require('../middleware/verifyToken');
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.get('/current', verifyToken, userController.getCurrent);
+router.post('/updateAddress', verifyToken, userController.updateAddress);
 
 router.post('/addJourneyPlan', userController.addJourneyPlan);
 router.post('/removeJourneyPlan', userController.removeJourneyPlan);

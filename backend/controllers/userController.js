@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel.js');
+const { Op } = require('sequelize');
 require('dotenv').config();
 
 const SECRET_KEY = process.env.JWT_SECRET;
@@ -10,9 +11,22 @@ exports.register = (request, response) => {
   const { username, password, email, address } = request.body;
   if (password.length < 8) return response.status(400).json('Password too short');
 
-  User.findOne({ where: { username } })
+  User.findOne({ // SELECT * FROM Users WHERE username = 'xxx' OR email = 'xxx';
+    where: {
+      [Op.or]: [
+        { username },
+        { email }
+      ]
+    }
+  })
     .then(existingUser => {
-      if (existingUser) return response.status(409).json('User already exists');    
+      if (existingUser) {
+        if (existingUser.username === username) {
+          return response.status(409).json('username already exists');
+        } else {
+          return response.status(409).json('email already exists');
+        }
+      }
 
       return bcrypt.hash(password, 10)
         .then(hash => {
@@ -25,7 +39,7 @@ exports.register = (request, response) => {
             journeyPlans: [],
           });
         })
-        .then(() => response.status(201).json('User registered successfully'))
+        .then(() => response.status(201).json('User registered successfully'));
     })
     .catch(error => response.status(500).json(error.message));
 };
@@ -60,6 +74,22 @@ exports.getCurrent = (request, response) => {
     })
     .catch(error => response.status(500).json(error.message));
 };
+
+// Update User Address
+exports.updateAddress = (request, response) => {
+  const { newAddress } = request.body;
+  const userId = request.userId; // from verifyToken
+
+  if (!newAddress) {
+    return response.status(400).json('New address is required');
+  }
+
+  User.findByPk(userId)
+    .then(user => user.update({ address: newAddress }))
+    .then(() => response.json('Address updated'))
+    .catch(error => response.status(500).json(error.message));
+};
+
 
 // Add journeyPlan ID
 exports.addJourneyPlan = (request, response) => {
