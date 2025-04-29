@@ -1,4 +1,4 @@
-const JourneyPlan = require('../models/JourneyPlanModel.js');
+const JourneyPlan = require('../models/journeyPlanModel.js');
 
 // Create a JourneyPlan
 exports.create = (request, response) => {
