@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'; 
 
+const HOST_URL = process.env.REACT_APP_HOST_URL || 'http://localhost:5000';
+
 const RegisterPage = () => {
   const [form, setForm] = useState({
     username: '',
@@ -18,7 +20,7 @@ const RegisterPage = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    axios.post('http://localhost:5000/user/register', form)
+    axios.post(`${HOST_URL}/user/register`, form)
       .then(response => {
         alert(response.data);
         navigate('/');

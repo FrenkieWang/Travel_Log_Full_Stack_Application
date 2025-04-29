@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+const HOST_URL = process.env.REACT_APP_HOST_URL || 'http://localhost:5000';
+
 const LoginPage = () => {
   const [form, setForm] = useState({ username: '', password: '' });
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const LoginPage = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    axios.post('http://localhost:5000/user/login', form)
+    axios.post(`${HOST_URL}/user/login`, form)
       .then(response => {
         const token = response.data; // header.payload.signature
         localStorage.setItem('token', token);
