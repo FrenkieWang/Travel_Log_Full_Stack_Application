@@ -175,13 +175,28 @@ function JourneyPlanPage() {
       <hr />
 
       <h3>{editingId ? 'Edit Journey Plan' : 'Create Journey Plan'}</h3>
-      <input name="name" placeholder="Plan Name" value={form.name} onChange={handleChange} required />
-      <input name="startDate" type="date" value={form.startDate} onChange={handleChange} required />
-      <input name="endDate" type="date" value={form.endDate} onChange={handleChange} required />
-      <input name="description" placeholder="Description" value={form.description} onChange={handleChange} />
-
       <div>
-        <h4>Locations</h4>
+        <label><strong>Plan Name: &nbsp;</strong></label>
+        <input name="name" placeholder="Plan Name" value={form.name} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>Plan Name: &nbsp;</strong></label>
+        <input name="name" placeholder="Plan Name" value={form.name} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>Start Date: &nbsp;</strong></label>
+        <input name="startDate" type="date" value={form.startDate} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>End Date: &nbsp;</strong></label>
+        <input name="endDate" type="date" value={form.endDate} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>Description: &nbsp;</strong></label>
+        <input name="description" placeholder="Description" value={form.description} onChange={handleChange} />
+      </div>
+      <div>
+        <h4>Locations:</h4>
         {locations.map((loc, i) => (
           <div key={i}>
             <input value={loc} onChange={e => handleListChange('locations', i, e.target.value)} />
@@ -192,7 +207,7 @@ function JourneyPlanPage() {
       </div>
 
       <div>
-        <h4>Activities</h4>
+        <h4>Activities:</h4>
         {activities.map((act, i) => (
           <div key={i}>
             <input value={act} onChange={e => handleListChange('activities', i, e.target.value)} />

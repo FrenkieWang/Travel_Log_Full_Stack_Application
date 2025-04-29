@@ -166,14 +166,29 @@ function TravelLogPage() {
       <hr />
 
       <h3>{editingId ? 'Edit Travel Log' : 'Create Travel Log'}</h3>
-      <input name="title" placeholder="Title" value={form.title} onChange={handleChange} required />
-      <input name="description" placeholder="Description" value={form.description} onChange={handleChange} required />
-      <input name="startDate" type="date" value={form.startDate} onChange={handleChange} required />
-      <input name="endDate" type="date" value={form.endDate} onChange={handleChange} required />
-      <input name="postDate" type="date" value={form.postDate} onChange={handleChange} required />
+      <div>
+        <label><strong>Title: &nbsp;</strong></label>
+        <input name="title" placeholder="Title" value={form.title} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>Description: &nbsp;</strong></label>
+        <input name="description" placeholder="Description" value={form.description} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>Start Date: &nbsp;</strong></label>
+        <input name="startDate" type="date" value={form.startDate} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>End Date: &nbsp;</strong></label>
+        <input name="endDate" type="date" value={form.endDate} onChange={handleChange} required />
+      </div>
+      <div>
+        <label><strong>Post Date: &nbsp;</strong></label>
+        <input name="postDate" type="date" value={form.postDate} onChange={handleChange} required />
+      </div>
 
       <div>
-        <h4>Tags</h4>
+        <h4>Tags:</h4>
         {tags.map((tag, i) => (
           <div key={i}>
             <input value={tag} onChange={e => handleTagChange(i, e.target.value)} />
