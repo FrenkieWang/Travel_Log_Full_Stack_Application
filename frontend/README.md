@@ -34,7 +34,7 @@ frontend/
 
 ## Install Package
 Backend:
-npm install express sequelize mysql2 dotenv bcryptjs jsonwebtoken cors
+npm install express sequelize dotenv bcryptjs jsonwebtoken cors
 
 Frontend:
 

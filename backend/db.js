@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize'); // OObject-Relational Mapping
+const mysql2 = require('mysql2')
 require('dotenv').config();
 
 // Initialize Database connection
