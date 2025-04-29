@@ -3,7 +3,14 @@ const cors = require('cors');
 const sequelize = require('./db.js');
 
 const app = express();
-app.use(cors());
+// If you have Authorization, you cannot allow all origins
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const userRoutes = require('./routes/userRoutes.js');
