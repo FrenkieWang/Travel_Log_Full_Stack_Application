@@ -12,6 +12,7 @@ const HomePage = () => {
   const [userPlanNames, setUserPlanNames] = useState([]);
   const [userTravelLogTitles, setUserTravelLogTitles] = useState([]);
   const [newAddress, setNewAddress] = useState('');
+  const [showAddressInput, setShowAddressInput] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -72,6 +73,7 @@ const HomePage = () => {
         alert(response.data);
         setUser(prevUser => ({ ...prevUser, address: newAddress }));
         setNewAddress('');
+        setShowAddressInput(false); 
       })
       .catch(error => {
         console.error(error);
@@ -89,15 +91,22 @@ const HomePage = () => {
       <p><strong>Email:</strong> {email}</p>
       <p><strong>Address:</strong> {address}</p>
 
-      <label>Update your address:</label>
-      <input
-        type="text"
-        placeholder="Enter new address"
-        value={newAddress}
-        onChange={event => setNewAddress(event.target.value)}
-      />
-      <button onClick={handleAddressUpdate}>Update Address</button>
+      <button onClick={() => setShowAddressInput(!showAddressInput)}>
+        {showAddressInput ? 'Cancel Editing' : 'Edit your address'}
+      </button>
 
+      {showAddressInput && (
+        <div>
+          <label>Update your address:</label>
+          <input
+            type="text"
+            placeholder="Enter new address"
+            value={newAddress}
+            onChange={event => setNewAddress(event.target.value)}
+          />
+          <button onClick={handleAddressUpdate}>Update Address</button>
+        </div>
+      )}
       <h3>Your Travel Logs:</h3>
       <ul>
         {
