@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const HOST_URL = process.env.REACT_APP_HOST_URL || 'http://localhost:5000';
+const HOST_URL = import.meta.env.VITE_HOST_URL || 'http://localhost:5000';
 const JOURNEY_API_URL = `${HOST_URL}/journeyPlan`;
 const TRAVEL_API_URL = `${HOST_URL}/travelLog`;
 

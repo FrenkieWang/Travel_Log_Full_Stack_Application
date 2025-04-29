@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const HOST_URL = process.env.REACT_APP_HOST_URL || 'http://localhost:5000';
+const HOST_URL = import.meta.env.VITE_HOST_URL || 'http://localhost:5000';
 const TRAVEL_API_URL = `${HOST_URL}/travelLog`;
 
 const Table = styled.table`
