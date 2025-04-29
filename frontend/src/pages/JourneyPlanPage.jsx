@@ -180,10 +180,6 @@ function JourneyPlanPage() {
         <input name="name" placeholder="Plan Name" value={form.name} onChange={handleChange} required />
       </div>
       <div>
-        <label><strong>Plan Name: &nbsp;</strong></label>
-        <input name="name" placeholder="Plan Name" value={form.name} onChange={handleChange} required />
-      </div>
-      <div>
         <label><strong>Start Date: &nbsp;</strong></label>
         <input name="startDate" type="date" value={form.startDate} onChange={handleChange} required />
       </div>
