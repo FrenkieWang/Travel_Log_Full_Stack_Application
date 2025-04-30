@@ -34,8 +34,17 @@ frontend/
 
 ## Install Package
 Backend:
-npm install express sequelize dotenv bcryptjs jsonwebtoken cors
+npm install express mysql2 sequelize dotenv bcryptjs jsonwebtoken cors
 
 Frontend:
-
 npm install axios react-router-dom
+
+## Deployment
+Debug for vercel deployment - mysql2
+https://stackoverflow.com/questions/50614067/error-please-install-mysql2-package-manually
+
+Frontend env:
+- VITE_HOST_URL
+- import.meta.env.VITE_HOST_URL
+- cannot use app.use(cors())
+- Must specify the origin, method, allowedHeaders(Authorization) and credentials from corsOptions 
