@@ -1,0 +1,4 @@
+Question 1: What is password hashing? How do we check a password is valid if it is hashed? Why is it important to do so?
+ 
+Question 2: What is Mapping in React? Why is it useful to developers who are writing components for an app.
+ 

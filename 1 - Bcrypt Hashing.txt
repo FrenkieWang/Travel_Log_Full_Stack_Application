@@ -1,0 +1,6 @@
+1 - Bcrypt Hashing
+https://www.bcrypt.io/
+https://www.freecodecamp.org/news/how-to-hash-passwords-with-bcrypt-in-nodejs/
+
+2 - Array.prototype.map()
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map
